@@ -1,2 +1,2 @@
 # iys-python
- Turkish IYS python wrapper
+ Turkey IYS opt-out bot.
