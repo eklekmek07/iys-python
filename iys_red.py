@@ -41,16 +41,14 @@ headers = {
   'Content-Type': 'application/json'
 }
 for brand in brand_list:
-    reach_type = brand["type"]
-    brand_code = brand["brandCode"]
     if brand["status"] == "ONAY":
-        url = f"https://vatandas.iys.org.tr/api/v1/cgw/recipients/BIREYSEL/brands/{brand_code}/consent/update"
+        update_url = f"https://vatandas.iys.org.tr/api/v1/cgw/recipients/BIREYSEL/brands/{brand['brandCode']}/consent/update"
         payload = json_dumps({
             "recipient": phone_number,
             "status": "RET",
-            "type": reach_type
+            "type": brand["type"]
             })
-        response = s.request("POST", url, headers=headers, data=payload)
+        response = s.request("POST", update_url, headers=headers, data=payload)
         sleep(SLEEP_DURATION)
         if response.status_code != 200:
             print("Error with the transaction")
